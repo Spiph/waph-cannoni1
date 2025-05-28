@@ -23,8 +23,15 @@ This is a public repository for Ian Cannon to store all code from the course. Th
 [Hands-on exercises in lectures](labs) 
 
   - [Lab 0](labs/lab0): Development Environment Setup 
-  
+
+  Hello Apache
+
   ![Hello Apache](../../images/hello_apache.png)
+
+Git
+  ![Git Status](../../images/git_status.png)
+
+  I already had git set up in my WSL instance so everything worked out there. I learned how to reference images in a different directory - I want to track everything in the images folder for future labs.
 
 ### Hackations
 
