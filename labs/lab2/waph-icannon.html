@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WAPH Demo Page</title>
+</head>
+<body>
+  <h1>WAPH Demo Page</h1>
+  <!-- Student details -->
+  <p><strong>Name:</strong> Ianie</p>
+  <p><strong>Course:</strong> Web App Programming &amp; Hacking, Summer 2025</p>
+  <!-- Embedded headshot (make sure headshot.jpg is in the same folder) -->
+  <img src="headshot.jpg" alt="Spiph's Headshot" width="50">
+  <hr>
+
+  <!-- GET form -->
+  <form action="echo.php" method="get">
+    <label for="data-get">Enter text (GET):</label>
+    <input type="text" id="data-get" name="data" />
+    <input type="submit" value="Submit GET" />
+  </form>
+  <br>
+
+  <!-- POST form -->
+  <form action="echo.php" method="post">
+    <label for="data-post">Enter text (POST):</label>
+    <input type="text" id="data-post" name="data" />
+    <input type="submit" value="Submit POST" />
+  </form>
+  <hr>
+
+  <!-- Inline JavaScript to show current date/time -->
+  <div
+    id="date"
+    onclick="document.getElementById('date').innerHTML = Date();"
+    style="cursor: pointer; padding: 8px; border: 1px solid #ccc; display: inline-block;"
+  >
+    Click here to show current date and time
+  </div>
+  <hr>
+
+  <!-- Inline JavaScript key-logging example -->
+  <input
+    type="text"
+    placeholder="Type something…"
+    onkeyup="console.log('You pressed: ' + event.key)"
+    style="padding: 4px; width: 200px;"
+  />
+  <p style="font-size: 0.9em; color: #555;">
+    (Open Developer Console to see logged keystrokes.)
+  </p>
+  <hr>
+
+  <!-- Digital clock via an in-page <script> block -->
+  <div
+    id="digit-clock"
+    style="font-family: monospace; font-size: 1.2em; margin-bottom: 12px;"
+  ></div>
+  <script>
+    function displayTime() {
+      document.getElementById('digit-clock').innerHTML =
+        new Date().toLocaleTimeString();
+    }
+    // Update every 500 ms
+    setInterval(displayTime, 500);
+    // Initialize immediately
+    displayTime();
+  </script>
+  <hr>
+
+  <!-- Toggle email address using an external JS file -->
+  <button onclick="showHideEmail()">Toggle Email Address</button>
+  <div
+    id="email"
+    onclick="showHideEmail()"
+    style="display: none; margin-top: 8px; cursor: pointer; color: blue;"
+  >
+    demo@udayton.edu
+  </div>
+  <script src="email.js"></script>
+  <hr>
+
+  <!-- Analog clock from a remote JS file -->
+  <canvas id="analog-clock" width="200" height="200"></canvas>
+  <script src="https://waph-phung.github.io/clock.js"></script>
+
+
+  <!-- ========================= -->
+<!-- AJAX INPUT / BUTTON / DIV -->
+<!-- ========================= -->
+<div style="margin: 20px 0;">
+  <!-- 1) User Input -->
+  <label for="ajax-input">Type something:</label>
+  <input
+    type="text"
+    id="ajax-input"
+    placeholder="Enter text here"
+    style="padding: 4px; width: 200px;"
+  />
+
+  <!-- 2) Button to trigger Ajax -->
+  <button
+    id="ajax-button"
+    style="padding: 6px 12px; margin-left: 8px;"
+  >
+    Send Ajax GET
+  </button>
+</div>
+
+<!-- 3) DIV where the response will appear -->
+<div
+  id="ajax-result"
+  style="margin-top: 12px; padding: 10px; border: 1px solid #ccc; min-height: 24px;"
+>
+  <!-- Response from echo.php will be injected here -->
+</div>
+
+<!-- ================ -->
+<!-- AJAX SCRIPT BELOW -->
+<!-- ================ -->
+<script>
+  // 4) When the button is clicked, grab input value and send Ajax GET to echo.php
+  document.getElementById('ajax-button').addEventListener('click', function () {
+    // a) Get the user‐entered text
+    const userText = document.getElementById('ajax-input').value;
+
+    // b) Build the URL for GET, encoding the data
+    const url = 'echo.php?data=' + encodeURIComponent(userText);
+
+    // c) Create a new XMLHttpRequest
+    const xhr = new XMLHttpRequest();
+
+    // d) Configure it: GET to the echo.php endpoint
+    xhr.open('GET', url, true);
+
+    // e) When the response comes back, write it into #ajax-result
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        // xhr.responseText contains the echoed HTML from echo.php
+        document.getElementById('ajax-result').innerHTML = xhr.responseText;
+      } else {
+        document.getElementById('ajax-result').innerHTML =
+          'Error: ' + xhr.status;
+      }
+    };
+
+    // f) (Optional) handle network errors
+    xhr.onerror = function () {
+      document.getElementById('ajax-result').innerHTML =
+        'Request failed (network error).';
+    };
+
+    // g) Finally, send the request
+    xhr.send();
+  });
+</script>
+</body>
+</html>
