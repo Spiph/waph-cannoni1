@@ -1,0 +1,67 @@
+<h1 id="waph-demo-page-for-ian-cannon">WAPH Demo Page for Ian
+Cannon</h1>
+<p><strong>Name:</strong> Ianie</p>
+<p><strong>Course:</strong> Web App Programming &amp; Hacking, Summer
+2025</p>
+<p><img src="headshot.jpg" width="50" alt="Ian Cannon Headshot" /></p>
+<hr />
+<p>Enter text (GET):</p>
+<p><br />
+</p>
+<p>Enter text (POST):</p>
+<hr />
+<div id="date"
+onclick="document.getElementById(&#39;date&#39;).innerHTML = Date();"
+style="cursor: pointer; padding: 8px; border: 1px solid #ccc; display: inline-block;">
+Click here to show current date and time
+</div>
+<hr />
+<p>(Open Developer Console to see logged keystrokes.)</p>
+<hr />
+<div id="digit-clock"
+style="font-family: monospace; font-size: 1.2em; margin-bottom: 12px;">
+
+</div>
+<hr />
+<p>Toggle Email Address</p>
+<div id="email" onclick="showHideEmail()"
+style="display: none; margin-top: 8px; cursor: pointer; color: blue;">
+cannoni1@udayton.edu
+</div>
+<hr />
+<div style="margin: 20px 0;">
+Enter text:
+jQuery Ajax GET
+jQuery Ajax POST
+<div id="jquery-response"
+style="margin-top:10px; padding:6px; border:1px solid #ccc;">
+
+</div>
+</div>
+<div style="margin: 20px 0;">
+Type something:
+Send Ajax GET
+<div id="ajax-result">
+
+</div>
+<div id="joke-section"
+style="margin: 30px; padding: 16px; border: 2px dashed #aaa; border-radius: 12px; background: #f9f9f9;">
+<h2
+style="font-family: &#39;Comic Sans MS&#39;, cursive, sans-serif; color: #2c3e50;"
+id="daily-developer-chuckle">🎉 Daily Developer Chuckle</h2>
+<div id="joke-container"
+style="margin-top: 12px; font-family: monospace; font-size: 1.1em; color: #333;">
+Loading a programming joke...
+</div>
+</div>
+<div id="agify-section"
+style="margin: 30px; padding: 16px; border: 1px solid #ccc; border-radius: 8px;">
+<h2 id="predict-your-age">🔮 Predict Your Age</h2>
+Enter your first name:
+Predict Age
+<div id="agify-result"
+style="margin-top: 12px; font-family: monospace;">
+
+</div>
+</div>
+</div>
