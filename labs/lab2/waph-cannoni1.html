@@ -155,13 +155,14 @@
 
         xhr.onload = function() {
             if (xhr.status === 200) {
-            // Inject the raw HTML/text back into our div
-            document.getElementById('ajax-result').innerHTML = xhr.responseText;
+                // Encode response as text, not raw HTML
+                document.getElementById('ajax-result').textContent = xhr.responseText;
             } else {
-            document.getElementById('ajax-result').textContent =
+                document.getElementById('ajax-result').textContent =
                 'Error: HTTP ' + xhr.status;
             }
         };
+
 
         xhr.onerror = function() {
             document.getElementById('ajax-result').textContent =
@@ -173,11 +174,15 @@
     </script>
     <script>
     function jQueryAjaxGet() {
-        const input = $("#jquery-input").val();
-        if (input.length === 0) return;
+        const input = $("#jquery-input").val().trim();
+        if (input.length === 0 || input.length > 100) {
+            alert("Invalid input. Please enter 1–100 characters.");
+            return;
+        }       
+
 
         $.get("echo.php?message=" + encodeURIComponent(input), function(response) {
-        $("#jquery-response").html("GET response: " + response);
+        $("#jquery-response").text("GET response: " + response); // Instead of: .html()
         }).fail(function() {
         $("#jquery-response").text("GET request failed.");
         });
@@ -186,16 +191,21 @@
     }
 
     function jQueryAjaxPost() {
-        const input = $("#jquery-input").val();
-        if (input.length === 0) return;
+        const input = $("#jquery-input").val().trim();
+        if (input.length === 0 || input.length > 100) {
+            alert("Invalid input. Please enter 1–100 characters.");
+            return;
+        }
+
 
         $.post("echo.php", { message: input }, function(response) {
-        $("#jquery-response").html("POST response: " + response);
+        $("#jquery-response").text("POST response: " + response); // Instead of: .html()
         }).fail(function() {
         $("#jquery-response").text("POST request failed.");
         });
 
         $("#jquery-input").val(""); // Clear input
+        
     }
     </script>
 

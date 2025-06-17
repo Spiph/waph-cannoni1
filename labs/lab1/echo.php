@@ -1,9 +1,14 @@
 <?php
-// echo.php: Echo back the “message” parameter from the URL
-if (isset($_GET['message'])) {
-    $message = $_GET['message'];
-} else {
-    $message = '';
+// echo.php: Securely echo back the “message” parameter
+function sanitize($data) {
+    return htmlspecialchars($data, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+}
+
+$message = '';
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['message'])) {
+    $message = sanitize($_GET['message']);
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message'])) {
+    $message = sanitize($_POST['message']);
 }
 ?>
 <!DOCTYPE html>
