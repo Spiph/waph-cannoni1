@@ -129,3 +129,12 @@ echo htmlspecialchars($_POST["input"], ENT_QUOTES | ENT_HTML5);
 ''
 
 In Level 6, the web application applies strict output encoding using htmlspecialchars() or equivalent, converting all special characters such as <, >, ", and ' into HTML-safe entities. This ensures that user input is rendered as inert plain text on the page. I attempted a variety of reflected XSS attacks, including HTML tag injection, JavaScript injection, encoded entity bypasses, iframe srcdoc exploits, JavaScript context breaks, and obfuscated function calls. All were rendered as visible text in the browser and did not execute. Based on testing and inspection via DevTools, I conclude that Level 6 is not vulnerable to reflected XSS due to proper output encoding.
+
+### Task 2 Defenses
+
+![updated labs to protect against vulnerabilitits](image-8.png)
+
+
+### Video 
+
+![video](2025-06-17 16-31-05.mkv)
