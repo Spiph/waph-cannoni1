@@ -1,14 +1,14 @@
 -- database-data.sql
 USE secure_app;
 
+-- Drop the table if it exists to start fresh
+DROP TABLE IF EXISTS Users;
+
+-- Recreate the table
 CREATE TABLE Users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(50) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL
+  username VARCHAR(50) NOT NULL PRIMARY KEY,
+  password VARCHAR(100) NOT NULL
 );
 
-INSERT INTO Users (username, password) VALUES
-  ('alice', '$2y$10$abcdefghijklmnopqrstuv'),  -- example bcrypt hashes
-  ('bob',   '$2y$10$1234567890abcdefghijklmnopqrstuvwxyz');
-
-echo password_hash('alice_password', PASSWORD_BCRYPT), "\n";
+-- Insert a user with an md5 hashed password
+INSERT INTO Users (username, password) VALUES ('admin', md5('pass'));

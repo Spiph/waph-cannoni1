@@ -26,7 +26,7 @@ I created `secure_app` and the non-root user `webuser`
 
 [database-account](database-account.sql)
 
-passwords are securely hashed
+Then I created an admin account
 
 [database-data](database-data.sql)
 
@@ -38,3 +38,13 @@ passwords are securely hashed
 [form](form.php) 
 
 [index](index.php)
+
+#### c. Performing XSS and SQL Injection Attacks
+
+Following the instructions from the checkin, here is my attack: `admin' #<script>alert(document.cookie)</script>`
+
+![scripting attack](<Screenshot 2025-06-29 190028.png>)
+
+And the output from the attack
+
+![Attacked!](<Screenshot 2025-06-29 190012.png>)
