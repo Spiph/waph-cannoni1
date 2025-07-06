@@ -22,7 +22,7 @@ This is a public repository for Ian Cannon to store all code from the course. Th
 
 #### a. Database Setup and Management 
 
-I created `secure_app` and the non-root user `webuser`
+I created `waph` and the non-root user `cannoni1`
 
 [database-account](database-account.sql)
 
@@ -30,7 +30,9 @@ Then I created an admin account
 
 [database-data](database-data.sql)
 
-![here is the output for verification](image.png)
+![Here is the output](image-1.png)
+
+![And here is more output](image-2.png)
 
 
 #### b. A Simple (Insecure) Login System with PHP/MySQL

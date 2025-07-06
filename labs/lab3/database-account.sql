@@ -1,5 +1,4 @@
 -- database-account.sql
-CREATE DATABASE secure_app;
-CREATE USER 'webuser'@'localhost' IDENTIFIED BY 'YOUR_PASSWORD';
-GRANT ALL PRIVILEGES ON secure_app.* TO 'webuser'@'localhost';
-FLUSH PRIVILEGES;
+CREATE DATABASE waph;
+CREATE USER 'cannoni1'@'localhost' IDENTIFIED BY 'pass';
+GRANT ALL ON waph.* TO 'cannoni1'@'localhost';

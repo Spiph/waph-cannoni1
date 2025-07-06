@@ -1,14 +1,13 @@
 -- database-data.sql
-USE secure_app;
+USE waph;
 
 -- Drop the table if it exists to start fresh
-DROP TABLE IF EXISTS Users;
+drop table if exists users;
 
 -- Recreate the table
-CREATE TABLE Users (
-  username VARCHAR(50) NOT NULL PRIMARY KEY,
-  password VARCHAR(100) NOT NULL
-);
+create table users(
+username varchar(50) PRIMARY KEY,
+password varchar(100) NOT NULL);
 
 -- Insert a user with an md5 hashed password
-INSERT INTO Users (username, password) VALUES ('admin', md5('pass'));
+INSERT INTO users(username, password) VALUES ('admin', md5('pass'));

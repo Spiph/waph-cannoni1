@@ -3,19 +3,25 @@
 
 $mysqli = new mysqli(
   'localhost',        // host
-  'webuser',          // user
-  'YOUR_PASSWORD',    // password
-  'secure_app'        // database name
+  'cannoni1',          // user
+  'pass',    // password
+  'waph'              // database name
 );
 
-function checklogin_mysql($user, $pass) {
-    $mysqli = new mysqli('localhost', 'webuser', 'YOUR_PASSWORD', 'secure_app');
+function checklogin_mysql($username, $pass) {
+    $mysqli = new mysqli(
+        'localhost',        // host
+        'cannoni1',          // user
+        'pass',    // password
+        'waph'              // database name
+        );
+        
     if ($mysqli->connect_errno) {
-        die("Connection failed: " . $mysqli->connect_error);
+        printf("Connection failed: %s\n", $mysqli->connect_error);
     }
     
     // INSECURE: Building SQL query with user input. This is vulnerable!
-    $sql = "SELECT * FROM Users WHERE username='" . $user . "' AND password = md5('" . $pass . "')";
+    $sql = "SELECT * FROM users WHERE username='" . $username . "' AND password = md5('" . $pass . "')";
 
     // For debugging
     echo "DEBUG>sql= " . $sql;
@@ -34,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Note: The username from POST is not sanitized, which is part of the vulnerability.
     if (checklogin_mysql($_POST['username'], $_POST['password'])) {
         // The output here is also unsanitized, making it vulnerable to XSS.
-        echo "Welcome " . $_POST['username'] . " !";
+        echo "Welcome " . $_POST['username'] . "!";
     } else {
         echo "Invalid username/password";
     }
