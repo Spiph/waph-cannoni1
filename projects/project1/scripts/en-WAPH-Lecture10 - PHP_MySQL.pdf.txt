@@ -1,0 +1,963 @@
+today we will talk about
+uh database and and doing programming with
+the database in mysql and that is the lab
+task 2 lab 3 and i hope that when you
+watch this video you may want to browse and do the head-on that will be you know to save your time
+for the lab, because if you recall my
+lectures is lab, lab is lectures I
+integrate together. Today I will not
+show the quiz during the lectures, but
+I will note some of the things that I
+will ask for the quiz. Okay, so we will start
+with why we need database and database
+management system. And then we will talk
+about MySQL and the language, SQL or SQL, and
+then we do the programming, right? And then the
+head-ons we will do. So let's say we will
+start with a log-in system that will be the
+lab tree. And later on, in your team project,
+right, the mini Facebook one. So how do we
+need to start, right? So we start a lot of
+things, right? We start the first thing in the login
+system, of course, you need the user accounts.
+For example, it used to have at least a username
+and password so that you can validate the
+credential, right? And in the mini-Facebook, for
+example, you have a post, you have comments, and
+additional to username and password, you may want
+to have user profiles, the chat,
+whatsoever, the login history, a lot
+of things, right? So, we will discuss
+more about this design later, but this is
+the overall idea that we need to store a
+lot of data, right? That is the first point. The second point, the
+second discussion I want to mention here is how
+do we store the data, right? How do we
+store the data? So we can store the
+data in an application. So for example, in
+the web application, we store the data
+in PHP, of course, right? Let's say you can
+store some data into the code. However,
+this is not a solution. The thing here that
+the data cannot be updated, right? So,
+for example, if you add new ports, then how
+can you store the data? You can store in the memory with the
+application. However, if the application restarts, then you lost everything. So, the next version of storing data is using files. So, files are more
+permanent, right? So, you store the
+data in files. However, it's a little bit complex
+and also complicated it because how do you
+format the data right you have a let's say you have
+a username password you have a boss comments
+whatsoever another problem is the inconsistent
+inconsistent of the data for example let's say you
+have an application and application accessed by
+multiple users at the same time so one user they pause
+one user they view and you know if you didn't
+maintain the the the state then it will be inconsistent
+and also the access control like how you
+make sure that the data the file you store is
+not accessed by by others and like for example you
+should not store the data in the sensitive data,
+let's say the password, credit card, right, in plan test. And so these two
+possible solution is, you know, feasible, however,
+it's not, you know, sufficient solution. So the next solution
+is, and that is the modern solution
+nowadays, we use another application, and I
+call it database. So it means that
+the application just to manage the data, right? That is called modern
+database solution, and that is what
+we call database, right? So database
+is the general term, but to manage a database, normally we need a system, application system,
+right? So that application or that
+system is called database management
+system, right? So database
+management system is an application,
+is like, you know, in any other
+application. However, it's only due with data. So if you see here in
+this picture, right, there is the, this is the
+database management system. So the database management
+system is, is here. I don't know what
+going on here. And it will manage the
+data here, the data here. So in this data, it's not
+accessible from outside, except it must
+go through this database management
+system, right? So if you, later on, if
+we want to access the data, we need to
+connect to this database system and say, hey, can
+you give me the data? If you want to insert the
+data, you need to also connect to this database.
+you cannot do this you know directly it's not
+possible right uh so that is a database management
+system and in in modern database management system
+there's a lot of different type of database it's not
+just one type database but many right including
+relational database uh that is very common
+and well known and it's mostly used nowadays a
+character database no sql database object bay object
+authentic activities database right so here is the
+time chart the timeline that you can see so of
+course the five base um storing in five is the
+early days of the database right and then in uh in
+80s uh relational database um as is it's it's used
+like entity relationship and then like uh 2000 we
+have a web 2.0 whatsoever right so because it's it
+scalable and fast so there is a new database named
+web base or no sql or new sql database right
+so today we will talk uh mostly relational database
+that is the the main focus in this course But, I
+mean, we just give you an overview about different
+database system, right? So, in the relational
+database, is the storehouse that's storing
+the data, but the data is in kind of organized
+collection of data. Collection of data, I
+mean, like, for example, students in the university.
+So each student has the same data, like,
+for example, student ID, name, email, whatsoever. So that is a
+collection, right? And it's organized into
+an entity relationship, right? So, for example, student may have grade,
+may study course, right? so students study course
+and for a course student may receive a grade
+something like that so they they go they will do
+it in different you know collection of it's called
+schema table or query and whatsoever and the
+user of a database can retrieve some information
+from the database in that particular database
+so that is for a well -designed database so by
+the way in this course we will not discuss too much
+about database design but we just interview
+about the database and how we use database for our
+web application, right? But I will give you
+a little bit, you know, further idea
+of how the entity relationship in the
+relational database works. It's called ER model, right? Entity relationship
+model ER model. So in ER model there is
+that is the representation of a database and
+in the model there is there are some
+object or it's called entity right and then
+one entities will have an attributes or property
+like for example student is an entity as
+i mentioned before and if student have information
+so information like student id or name or
+your email so those are attributes or properties
+of that entity right and then the student will
+connect it to another entity for example courses
+right so there is a relationship between
+that entity and the other entity so it's called the
+entity relationship here and when we design a
+database we will design in that that way that
+we would draw like how this entity connected
+to another entity right or it's going to
+become er diagram and when we draw that we
+draw like you know uh we draw the rectangle will
+be the entity or the sets and then the
+eclipse is attribute and then the diamond will be
+a relationship, right? So I will show
+you an example. However, we do not do
+the hand-on for this for the lab, but in your
+team projects i will ask you to do so for
+for this design right so let's say we want to
+store a database for the charge system let's say
+in your team project right so in your team
+project i ask you to develop further a login
+system and in the login system you can change
+your password you can send a message to other,
+you can post, whatever, right? So here is
+the job system that each user can send a
+message to another user. So in the user, we have an attribute of username, right? And depending on the
+design, so username should be unique
+in every system. Normally, we have an
+ID or username, right? and then when you do
+like that you will have a username attribute and
+that attribute should be a key so the attribute with
+key normally withdraw with the underline and
+that message is is also an entity like the message
+will have a message id and then maybe content
+of the message what type message when the message
+was sent and we need to also store who sent
+the message and who will be the receiver of the
+message right so these are the relationship between
+the two entities right and then when we have
+these two entities we will translate this entity
+into tables this table is like relations table
+is like regular table in in when you draw the
+table right in in paper we have column and row and
+here is the idea and when we do the design normally
+we design using the diagram like this right
+so we have let's say user have two attribute
+username the key so we analyze it and then
+the password and then we have a message
+we have a different attributes and message
+id will be an attribute for key is unique and then
+you have a relationship so one user can send
+multiple messages right but one message just sent
+by one user right and then the user can receive
+multiple messages and messages can be you know
+received by multiple user of course right so
+this is the database and um typically uh after
+we design this right so first when we set up
+when we do the database programming we need to
+um we need to gather this requirement like what
+do we need to store the data and then we will
+model the data and then we will implement this
+data in a database system, right? So these
+are three steps, right? The first one is
+we do the database requirements,
+data requirements. So for example, in
+the hand-on today we do, what do we
+need to stop? So for example, in
+the login system, we just start with like,
+or we start with similar like hello world. So in
+this login, we need to store the username and
+password of the user, right? And then we do not have
+a relationship for now. We only have one entity. But later on, we need to have another relationship. For example, how do we
+store the data that the user writes something?
+right and then we will implement that into a database
+management system dbms nowadays structure query
+language is sql or sql is a common database query
+language for relational database and this show
+you like the survey of different database
+management system nowadays this one is the latest
+one and you see the list is not like chain a lot
+and you can see here the first four are
+relational database and then number five is no sql
+database number five number six number seven and then
+the other is relational database so if you see here
+the relational database is still a most popular
+database management system and today we will talk
+mostly about the relational database with MySQL right
+and the you may know that the top one and two
+here are the same owner right so so MySQL is all by
+Oracle as well so they are the same company yeah so
+that is the general idea of database and database
+management system so now i will talk more about
+what we are doing for this class is the mysql and the
+structure query language sql or sql and then we will
+do the database programming for today and then we
+will implement that for the login system right so
+mysql um is uh uh developed by oracle and that is
+the open source uh it's the most popular database
+system and normally is is integrated with ps3 so So
+you can see that, okay, PSP, MySQL is like always
+connected to its other. It is a server. It's
+an application, but it's also a server.
+So it's going to run, normally it's run on the
+server on a computer. And then if you want to
+connect to that database, you need to connect
+to that server. So typically when we do
+programming with PSP, we have a MySQL server and the
+web server run in the same computer, but it's
+not always the case. You can always use
+the cloud MySQL database server, or you
+can use the database server installed in
+another computer. That didn't prevent the
+connection in that way. right um it's used
+standard as sql or sql structural quality language
+you'll introduce later and um it's free and
+open source and ross transform which can
+run any platform and mysql if you see
+is the second largest second most
+popular database management system right
+so i will talk a little bit more about the sequel
+the language itself is structural query language
+it's either language for assessing or
+manipulating the database and we will do that with
+handouts as well so for example if you want to
+the data from the database if you want to insert the
+data from the database update or delete the data
+from database or at the beginning you want to
+create a database and then after you create the database
+you create a table in the database you create
+some other you know advanced concept like procedures
+views and then you can also set the permission
+as well right Okay, so we will do the hand-on for
+the lab and for today's lectures that we will
+install the MySQL in Ubuntu. To install the MySQL
+in Ubuntu, this is the comment in
+a sudo get install MySQL server and then
+you just say yes. So in this, when
+you install it, you will have a
+default account. It's the root account
+with no password. So it's very insecure.
+However, typically you do not, you are not
+allowed to access this without sudo, right? So
+for example, I already installed it, so I will
+just show you like, so I don't install it
+again, but you can just try something like mysql
+dot uh v so this will be you know this is
+the version the mysql version 2.0 36 um and
+then if you try like sudo sql hyphen u is the
+username uh And then the username, the
+default username is root, and then hyphen
+p is a password. And enter for the password. This is the password for
+pseudo first, not the password for the database.
+Remember, there are two passwords because this
+is the pseudo password. Then it's as the password
+for the database. So there's no
+password for the root user in this database.
+You just enter. So you see that it's there. and this is the mysql
+server terminal so from here you can create the
+database you can query the database create table
+whatsoever we do this panel right uh one thing
+that i i show you later is for example we do like
+that we can solve the database right so
+typically you will receive you will see the database
+like information schema mysql performance and
+six and w a ph is the database i just created
+so you will do that for today that just and then
+if you want to assist the otherwise if you don't
+want to um you access this you don't want to
+connect it to it just put that's it so it's
+there um and if you let's say if you try
+this without sudo and you don't have a
+password right so let's say enter the password
+it's a no password so in that case it will
+access deny so even this no password is
+secure insecure however is not allowing you to
+access without the the sudo right so it's it's
+look like more skip and uh so the database
+we create a new database we can use the database
+right so in your case right now you do not
+have any database in your in mysql server so you
+need to create the database right first for the
+application but before you create a database i
+just want to talk about permission and access
+control in in database right so you can see
+here right now we have a root database
+without username sorry without password so
+typically that is not the the the account that we
+should even you have a password we should never
+use the root account but the root privilege to to to
+to to accept the database from the web application
+because in your web application normally you
+need to provide username password to access to
+the database server right so the reason we should
+not use the root because the root user can access
+all of the database in in one server and typically
+when we have a web application we only create
+the database for that application and if you use
+the root password let's say your system have been
+attacked by let's say sql injection or something
+then the hacker can the attacker can get all of
+information from all the database as well so this
+that's not not a good practice right so we
+should never use the root account for database access
+instead we should create a new database user so
+we also use the SQL to create the database user
+using create user and then we have a username at
+localhost and then identify by a password and then
+after that we will say that okay with this user
+we will grant the access to the database we use
+in that application only And this is the
+step that I will ask you to do in the handout. This principle should
+apply, you know, should be applied for any
+application with database, not only web application,
+but, you know, typically typical secure
+programming step. Yeah. And so we have a, today we
+also talk about username and password in our
+application. However, you do not configure because
+this is two different things, right? The username
+and password here is the username password for
+accessing the MySQL server. Later on, we also create
+a username password in the database so
+that we can use for our login system. So that's
+two different things right so I hope you
+will not confuse about this so that that is
+database my sequel and how to create the user
+right and here what Here, after this, after
+you create the user, you can start doing the SQL
+to create a database. Or you can, you already
+created a database before this because you need to
+grant the access, right? And then you can use the
+SQL commands from the database server. or you
+can you can do this in your in your web application
+that and application application so these are the
+most important and common sql comments like for
+example to select the data from a database to update
+the data from the other way to delete the data
+to insert database create the database and to change
+the database, create a table in the database,
+modify the table, drop the table in there. So I
+highlight something here, right? So we would
+use a lot with select, update, delete,
+and insert into. Create the database,
+normally we do just one. Create the Normally,
+you do just one, delete the table,
+you may need to do, so for example, if
+you already have that table, you
+will do it, right? So yeah, so I will walk you through some common
+SQL structure. The first one is,
+let's say you want to create tables in the
+database, right? So let's say in our login
+system, we need to store the username and
+password of the user. So let's say we want to
+create a table user with two attributes,
+username and password. So here is a syntax to
+create a table. Let's say we create table
+and then the table name, right? And then
+we can have as many attributes as possible,
+at least one, right? So, remember the
+syntax for SQL is non-case sensitive,
+it means that you can have uppercase,
+lowercase, right? And here in this example,
+you can create a table named user, and in
+that table named user, you have two attributes,
+username and password. so username here
+have a like the vaca it means that this
+is character just 50 long primary keys uh it
+means that it's unique um we discussed before
+it's me now this attribute is unique so if you
+create one username let's say abc and then you
+insert another username abc the system will not
+allow because it says it's already there so
+that's why we put primary key in that and then
+not known mean like you are not allowed to uh
+to have a new value in this one for example
+right and after you um after you have a table
+then you will uh you will insert the data to
+the table, right? So for now, we can use
+the SQL command from the database server
+to insert the data. But later on in your
+project, for example, you can have, so we
+have a log-in system. We just check the
+log-in. But later on in your project,
+for example, you will allow the user to
+register an account. So in that case, when the
+user registers an account, it means that you will
+get the data and then you insert the data to
+the database right so to the insert the data to
+the database you use the insert uh like uh insert
+uh sql insert into right so insert into and then
+the table name and then the field name and then
+value so field name will be optional um it should
+be um it's better to have a few name but you can
+if you have let's say in the user table you only
+have two values so if you put the value admin and
+value like this so that this the first value
+will be assigned to the first column the second
+value will be assigned second column and if you
+recall we define username the first column the
+password the second column so will insert
+the data to the database. And then if you want to view everything from the database, sorry, from the table,
+you can just select star. Star means you
+select everything. Let's say in this
+table user, you have two columns,
+so it will be view two columns. In some
+table, let's say 20 column, then if
+you start, you select star, it means that
+it's all 20 columns. So if you want to
+select a particular column, you can
+name that column here, and we can
+discuss that later on. So this example, you
+select star from user. All right, so this is some
+comment, no hand-on yet, okay? And so I will
+ask you to browse and do the hand-ons
+in a few minutes. But I'll give you
+some examples, and then we do the hand-on. Let's say here I want
+to insert the data into the database. Let's say
+insert into user username password. So here I have
+a few names here. So make sure that we insert
+the first column, the first value to the first
+column here is username. First part, the password
+here in the password. right and then we can
+select everything so um so it's here right so i have
+a discussion here that if we do like this is there any security
+issue or concerns and if you see here even
+this is the back end uh the user will not see
+this of course however you see that the
+password is a sensitive information and it's
+stored in plant tests right and this is really bad
+practice in reality so one of the skills to
+print store that I want you to aware and I want
+you to do it right now is that never store the
+sensitive information at the pen test in the
+database the reason for that is very the first
+one is that as soon that you work in the company
+and you are database management uh administrator
+right so if you store everything like this so
+that administrator can see the data right so and
+in in the past um the incident happened because
+they get the data and then they can lead the
+company they sell the data so so that is the first
+step these are something that we can talk later
+we will talk later about the different level
+of the defense system um that that one thing
+the other thing is that the system must be secure, but in case of, you know, sequence changing attack,
+something like that, even the attacker
+retrieved the data, they may not be able to
+review the data because it's already, you know,
+not in the same task. So how to store the
+data, the sensitive data in database? So there
+are two ways to do that. and so we we can
+use hash or you can use uh encryption decryption
+uh in the database and i would like
+to note that why we need hash where
+we need the the encryption or
+decryption so you only use hash if
+you don't want to get the data back because
+hash is in in practice is uh in it i mean in
+principle hash is one way so you hash one value to another
+value and you will not be able to reverse it back
+right so it's gone hashing uh so that is good for
+only for for comparison So in this case, for
+example, a password normally is due for a
+video hash. But for some other, for example,
+credit card number or some information that
+we need to get it back. If we hash, we cannot get
+it back. So we need to encrypt it, right? So the
+data can be decrypt later. And again, this is a second
+principle in database that we can apply, we
+should apply for any database, any application
+we're doing with database. So in MySQL, if you want to
+store password, there are different
+viewing functions. so one of the viewing
+functions is the md5. md5 is a function that
+they pass the data into md5 algorithm and then
+you can store that. So instead of you insert
+the data into the database using the plan test, you
+can use that md5 here. So for example here the
+md5 right and you will you will store so when you store
+like this right and then if you want to select the
+data from this you see the password to store in
+in in md5 this is just example this is not exactly
+the md5 but um it's another another way of uh passing
+as in the data right so the the password has
+here all right so that is the overview of the overview
+of database database management system and then
+mysql and you know some basic sql comment like
+create database create table inserts into table sealant
+from the table right so now we will do the hand
+-on you need to install this i showed you before
+and then you check this and then you can
+connect this then you can show the database you can
+access the database right um and um yeah so i i
+already showed you that and on before so I don't
+want to show you one more time right I just did that
+here see right and then we have so now the next
+step I want you to do is I want you to create a
+database so that we can use for the login system
+so we call that we have a database I create a database
+and then we create a user as well we use a name
+and password right and then we say okay we run
+this access to this which can password typically we
+can just go to you know sequel and to create
+that I so let's say we can do right
+you can go to sequel So here you can create,
+for example, create. You can show the database. What is the database? Yeah. So I can create a
+new database. Let's say create the
+database, for example. Right. And then you can
+create a new database. And so the database, so you
+see this is here, right? So we can tie this, but
+I don't want you to do that way. So the reason is
+that if you do this way, let's say if you want to
+do it again in another VM, or later on, you want to
+set up in another system, you have to tie it
+again. So what I want you to do with that,
+I want you to create, write this comment
+into a file. and then we will use
+the file to run the file later on right so for
+example i asked you to do create a file let's
+say database accounts database and accounts so
+in that tree let's say you have an update right
+so in that um you will create a database name
+and w-u-a-p-s that is a sample our course name web
+application programming hacking and then
+another database account so for example we create
+let's say create a database like this and
+then we will create a user so you have to name your username and
+password by yourself for example here
+i have database my username and then i
+do something like this and then we will import this into this, right? So you type user username, you type
+the SQL and then you have this and then you
+import this, yeah, right? And so after you do this, you can log in with your username
+and password that you just created
+over there, right? So for example, here it
+comes in, I'd say you tie sudo MySQL U and then
+this is the database. Make sure that you
+are in the folder that you have that, right?
+And then you can log in and then now you
+can have a database. And remember the
+database here is just a database
+for that user. All right. and you can see here
+um so like we create another way if not
+at this so if you put this if as is right
+so it will be it will not create the error
+so that you can log in with this username
+and password right i can do like so to base and then you want to create
+the username uh that you create tables that we saw
+before and then we insert into the table right so
+and with the with the m insert into the user with
+the value so similar to to the one before I so I want
+you to uh create a fine name let's say database
+data in the folder and then to import that later
+right so later on you can import you import now later
+on if you want to redeploy the application again
+you can do it again right so for example i have it
+like this and then i uh you know i i insert that
+and i log in into that and then i can i can have
+so i want you to capture results something like this
+for your database management setup and management then
+you create a new table you insert the data to the
+table and then you query the data from the from
+the table right you see uh i i drop table in assist
+so if it's already there then i drop it and then
+i create a new table, and then I will insert into
+that line, you know, the value, the admin, and my
+system, something like that. So what I do with that,
+I will be minus equals, here I import that into, let
+me highlight it for you, I insert it into
+this database, right, because I just insert
+into that database and then this data right
+in this password for me so this is another password
+all right so it's there so now you can connect
+to another way again so now you can use
+the database let's say w and now
+you can have you can have a user so
+if you see something like this we have a
+few name username and password then here you
+can select star from Okay, so you see
+that it has a username and password
+is hashed, right? So I want you to
+capture this screenshot for demonstrating
+that you got it. Okay, question is, so we can
+show everything, right? So the next question I
+want to ask you is, how do we, how do we, we query
+the, query the data with some inputs? So for
+example, later on, the next step we need to do is
+we get the username and password from the user
+and then we check with the database, right? So
+how do we do that, right? and typically we use the
+query with where with the condition so for
+example the syntax will be select some column name
+or star or some column name from the table
+that we did before but now we need to have a
+where condition right so the where will be like
+one or more boolean condition and this is for
+example the one that we're doing today let's say
+for example we select from user where username
+equal to something and password equal to something
+and so we would we have a where and remember
+when we have a value that is we need to depend on
+the type so normally we have a factorized in the
+string and we need to put that into a um a code double
+code or or single code right um so that that
+indicates um so for example if you select something
+where admin is something password equal to something
+then it says there but if you do like wrong
+for example here you do like uh password equal
+to something then it will be empty says or if you
+see that just the username then it will show all of
+the username right all right so we we're done with
+the setup and management so the next step we
+do is we will do the programming to um in general
+uh if you want to do a programming with a database
+management system you need to have a driver for
+the programming language so for example as java
+need to have a jdbc driver or sql golan need to have
+a database SQL packet. PSP, we need to have a
+PSP MySQL i that we need to to install it later.
+So we can have two ways to access the MySQL
+database. It's MySQL i extension, i stands for
+improve or PSP data objects. So in this class we can
+use the first method. So to be able to use
+that before you have to install the PSP MySQL I,
+this is the PSP driver for MySQL you have to install
+it I did that already so I didn't do that but
+I have a warning here, like if you miss this
+step, you cannot do further remember so that's why I put the warning
+here, you have to do install the driver so that you can do the programming. So after you install, you typically for step
+to do programming in PHP that first you
+connect to the database, right? Second, you will
+create a query string. So the query string, typically the query
+string based on user input or maybe it's not user
+input in fact, right? And so, for example,
+if you want to get all of the data from a table,
+then you don't need the user input, mostly
+based on user input. And then you will create a query from the user input. You will send to
+the database, hey, I want to query this
+data, right? And then the database will give you
+the result. So you need to get the result and
+handle the result, right? The requirement
+for this system. this system will ask the
+user to provide a username and password and to log
+into the web application so the username submit
+when the when the username submit right the back
+end application will get the input the username
+password then connect to the database check so
+if the provide username possible mattress with the
+record in the database we say hey welcome username
+otherwise we say hey it's not possible um so
+for this lab yeah i provide the code skeleton for
+you so you don't need to you don't need to
+do to do like from scratch but i explain
+the code for you uh so we have two files
+the first find the form so if you can see here
+basically the form The action will be index.psp.
+It means that it will send the data to index
+.psp in the BOSS method. And with two fields,
+right? It's a username field and password
+field. And this password, we tie the
+input tie as password, right? And in the index,
+currently, I hard code the username password testing
+because I want that when you deploy this to the
+system, it works perfectly right so here you see
+we just have code like username equal to admin
+password equal to one two three four and it should
+work right so our task is to uh replay this by doing
+the real thing we will connect to the database
+and check the username password but before that
+Let's deploy the skeleton and make it run right
+so I will show you this here so that you
+can follow in your head-on
+step. I will go to right so you will see the So you can just deploy this tool file to the
+RPC web server. We have a session
+test in the previous lecture, so we can
+deploy all of this. But remember this one
+you need to modify. so i just want you
+to deploy that to just to find the form
+.php and index.php to www.stml right so first i will show you
+the code i supply and i explain some of the code
+for you as well so here the code right so this is
+the code that i uh okay i also want to explain to you
+about you know I provide two different times this
+is echo visited time is mean that this this time
+is from the server side is run and PSP on PSP
+right and then in the um it's also have a this is
+the code that we write in jama script before right
+and then it's uh you you have to uh change your
+username uh something like that right but but that
+is the next step i want to do i want you to copy
+this into your uh into your your your your private
+textbook but let's test this first form.psd all
+right so you see so it's working this is the visited
+time it just you know stay here but we have this
+one is that was script so it's run in the client
+client side this one is run like you know server
+side and so let's say if you try something in abc123
+log in is sent to the center of the server
+and the server will say immediately username password
+right so let me open the the index as well right so in this index
+we check login uh this is the username this is
+the password and then If the username
+equal to admin and password equal to
+one, two, three, we will say we return
+two. So when we return two, then
+it will be welcome. Otherwise it will be,
+you know, it's say alert. And then it's a
+printout of the screen. And this is simple.
+Later on, I need, we need to change this a lot,
+but it's a simple one. I put windows
+application form. So now it's redirected
+back to the form. All right. So, all right.
+So let's say if you type correct username
+and password, admin, and then one,
+two, three, four, it should say, yeah, it should say like
+this, right? so welcome at me all right so the
+next step I want you to do is that I want you to
+copy this into your lab tree folder but before
+that let me explain to you that the flow right so we
+have a form it's something to index and this index
+will check the other way so in this database it
+just have code right now mock up the data and if
+the check is true then we welcome message otherwise
+we do that data okay so let me copy that
+to my folder as well so that we
+do the same thing where is cp So the next step we will
+do is that we will, yeah, we will put
+the MySQL connections into uh into the uh
+the psp code so um this is mysql i um and uh
+so we we need that um so to to put that and
+um you need to of course this you need to replace
+the database name database password and the
+database username um and remember do not confuse
+this database username and password with the the
+user the data user that that that we just created
+um on the table right so here uh what i want
+you to do with that i want you to copy the jack
+log in function and then rename it into, let's
+say, jacklock in MySQL, something like that. And then I want you to
+add the username, MySQL, something like that. And then here is another
+step, like MySQL. If something wrong
+happens, then you can say, hey, we cannot
+connect to the database. And typically, you don't
+print it out because it will um you know it
+will reveal some data for the attacker but for
+the debug information we can do this here on
+here otherwise we return false just for now right
+uh it will do not do anything and then the next
+step is that you change the uh the check login
+uh into this uh into uh to this one to call this
+one right and then um you can deploy the code
+and your test is but the test on way fail because
+we didn't do anything we just want to make
+sure that you can connect to uh connect it to to
+the database right so um yeah so i can i can show
+you the steps something of course if the if the
+code um if your code is not working so i can
+show you a slide um at the beginning maybe
+your code is not working because of syntax error
+um so to be able to do that you need to view
+what is the error by your child like tell and
+then the number here and then Slot var, slot
+lock, slot apache2, and then lock error. You
+will see what's going on. Another way you can
+do that, you can tie these two comments
+into your PHP, and it will display the
+error for you, but it's not recommended because
+if you forgot to turn it off, then it's not
+good for your application. So back to this. you put that into your file and then you check it, right? So I change for example
+I will comment out and then I here and what i did is that
+i just copy this right and then i i name it so
+here you see i had the username and password
+here and then something wrong happened and
+then i change this here okay so right now you
+can do this and make sure that you you can
+connect to the database without any problem
+right sudo cp index so here we do it back do
+this so now if you provide like correct using password
+is also a say even if that's good or if you
+want to change the code let's say it's return
+true that is another way to check right if you
+return true anyway and then you deploy that one
+more time and now if you type something else the
+abc so it's just log in because it didn't
+do the real check right welcome abc so when you
+create a query um normally especially for this case
+it would be the user input we get the username
+we get the password and then we create a
+query and remember that we have a like the
+query let's say see that from something where
+username equal to some some input and
+password equal to some output right and you
+can do it again right i did that before i showed
+you before but you can So if you do like this, it should return true, right? So make sure that you
+have this and then you copy this into your code
+so that you have a correct one. So when you copy
+the new code, of course, you need to replace
+this one with the user input, and this one with
+the user input, right? So let's try one more time. If we do something like that, we can do like this. Copy. If you do, okay. If you do something else,
+let's say, password, ABC. So, of course, it
+should be empty, right? So this is a valid
+query, all right? So that next step is you
+need to get that from the form, right? The
+username from the password from the
+form, and then with the query, it should be
+something like this. This is the value
+from the form, this is the value from the
+form. And remember last time, we talked about
+how to get the data in PHP. we will get
+or post or request right so in this case
+because this is the post method right so we
+just use the post right so in your code you can
+do like this you can that like get username
+equal to something password equals something
+typically i recommend you to do it this way
+because you want to bring out some debug
+information right for example when you do this
+and then print out okay username equal to
+something password or something and typically
+you do it for debug only you should never do it
+for you know the the the application that
+already uh already there um so here you need to
+do this um right um and then the next step is
+to contrast the query that where we
+have the username and password
+from user, right? So there are two ways
+to do that. So one way that you can do the
+concat in PSP. So for example, you use string
+concat. This is the string. And then you
+will concat with the variable. And then
+another way is you can do, you know, this is, you
+can remember in PHP you can use the variable
+inside the string as well, right? And here
+is the note that I want you to to be
+aware this is important because uh do you see
+this what does this mean it means that because we
+use the double code for string right and then here
+we concat another string so when we contact analysis
+we need to wrap this screen into a screen so
+because we already use a double code here you should use
+a single code here that is one one way the other
+way is that you can escape that right so if you see
+that we have a small here and a small here so this
+is the string that is captured um so the next one
+is like easier to to get like for example here you
+you have all string together you just just put the
+variable here so this one is easier to you so if
+we use this and remember this is insecure way but
+we need to do that to to know like why it's insecure
+but the second the second string you see that is
+simple right so you don't need to have a dot dot dot
+dot so yeah so that's two way so and for now we
+have a username from the using the post username and
+then we name that in the username variable the
+password we put that in the password variable so then
+we can control the database let's say sql this is
+the stream that you copy from the sql right and then
+you put it there and right now the next step that
+you might want to do and you can just uh you can
+just uh bring out the uh bring out the debug information
+so for example here i will delete this and then
+i just delete it so here i will return true anyway
+so that i can see if my if my query string is is correct so here so I do it and then I just alright back here I put ABC123
+login so it's only a welcome because we didn't check
+but I just want to see the string and of course
+later on you need to comment out this one right copy
+and something like that right and you put a
+semicolon as well you see it's empty set
+uh because it's not there's no way there
+right um so if you do let's say the let's
+say the correct one admin password is right it doesn't matter for now
+but i just want to check you should do this
+as well step by step so it's there so in that
+case we should return 2 in this case we should
+return false so we do that that is the
+step that we need to do that is the one that I mentioned the
+step I mentioned uh okay a quiz question
+here um maybe uh yeah i mean um this is the
+the quiz question that i just asked you to do
+like how can we contract the string because uh
+note that like uh you know uh the single code
+and double code so so for for today i just want
+you to figure out the result because that is
+the thing that you you can do the hand-on and
+and understand better so the next step is to
+execute the query to a connected database and then
+we get the result right so it's for this one
+it will be simple so we already have a query so
+we just call mysql the the the database connection
+and then we say query and then we get the result
+from the query So let's say if the result is equal
+to 1, it means that we have exactly one row with
+that username password, then we return 2, otherwise
+we return 4, right? Here is the code, so I
+will comment out this one, and of course here I
+should also comment out this one as well, because
+it should not be there. um okay so you see the
+result you put something like this and then all right
+say it and then you boy okay we'll come back and
+then if you tie this one it's correct okay welcome
+at me right if If you type something else, let's
+say admin1 whatsoever, it should invalid
+username password. So we already have
+a login system working, right? It's
+simple login system. Remember, you have to
+change your username here as well, right? In the
+form, this version of the database programming,
+and it's there. This is the book information
+that I mentioned before, but this is good for
+your reference, right? Yeah, so basically
+from the code, it will be something
+like that. So you see the form will do
+the code in the PSP. And then, yeah, I just
+want you to note another note that I want you to
+do is if you do it this way, there must be a
+space here and a space here. um so i i just give
+you a harder solution but maybe when you do the
+framing i recommend you to do um to do the second
+option i think this second option is easier
+right like it's you don't need to care about the
+space and you see if you do here we have space
+here but if we do here because concatenation
+so you see it's a little bit harder to do to
+recognize all right so um all right yeah yeah the
+screen will be like this

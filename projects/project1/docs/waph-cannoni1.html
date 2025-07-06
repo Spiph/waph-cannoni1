@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WAPH Demo Page</title>
+    <link rel="stylesheet" href="https://waph-phung.github.io/style2.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+
+    <script>
+        // helper to read a named cookie
+        function getCookie(name) {
+            const matches = document.cookie.match(
+            new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g,'\\$1') + '=([^;]*)')
+            );
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+
+        // helper to set a cookie (expires in days)
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + days*24*60*60*1000);
+            expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const last = getCookie("lastVisit");
+            if (!last) {
+            alert("Welcome to my homepage for the first time!");
+            } else {
+            alert(`Welcome back! Your last visit was ${last}`);
+            }
+            // store today’s timestamp for next time
+            setCookie("lastVisit", new Date().toString(), 365);
+        });
+    </script>
+
+</head>
+<body>
+    <h1>WAPH Demo Page for Ian Cannon</h1>
+    <!-- Student details -->
+    <p><strong>Name:</strong> Ian Cannon</p>
+    <p><strong>Course:</strong> Web App Programming &amp; Hacking, Summer 2025</p>
+    <!-- Embedded headshot (make sure headshot.jpg is in the same folder) -->
+    <img src="headshot.jpg" alt="Ian Cannon Headshot" width="50">
+    <hr>
+
+    <!-- GET form -->
+    <form action="echo.php" method="get">
+        <label for="data-get">Enter text (GET):</label>
+        <input type="text" id="data-get" name="data" />
+        <input type="submit" value="Submit GET" />
+    </form>
+    <br>
+
+    <!-- POST form -->
+    <form action="echo.php" method="post">
+        <label for="data-post">Enter text (POST):</label>
+        <input type="text" id="data-post" name="data" />
+        <input type="submit" value="Submit POST" />
+    </form>
+    <hr>
+
+    <!-- Inline JavaScript to show current date/time -->
+    <div
+        id="date"
+        onclick="document.getElementById('date').innerHTML = Date();"
+        style="cursor: pointer; padding: 8px; border: 1px solid #ccc; display: inline-block;"
+    >
+        Click here to show current date and time
+    </div>
+    <hr>
+
+    <!-- Inline JavaScript key-logging example -->
+    <input
+        type="text"
+        placeholder="Type something…"
+        onkeyup="console.log('You pressed: ' + event.key)"
+        style="padding: 4px; width: 200px;"
+    />
+    <p style="font-size: 0.9em; color: #555;">
+        (Open Developer Console to see logged keystrokes.)
+    </p>
+    <hr>
+
+    <!-- Digital clock via an in-page <script> block -->
+    <div
+        id="digit-clock"
+        style="font-family: monospace; font-size: 1.2em; margin-bottom: 12px;"
+    ></div>
+    <script>
+        function displayTime() {
+        document.getElementById('digit-clock').innerHTML =
+            new Date().toLocaleTimeString();
+        }
+        // Update every 500 ms
+        setInterval(displayTime, 500);
+        // Initialize immediately
+        displayTime();
+    </script>
+    <hr>
+
+    <!-- Toggle email address using an external JS file -->
+    <button onclick="showHideEmail()">Toggle Email Address</button>
+    <div
+        id="email"
+        onclick="showHideEmail()"
+        style="display: none; margin-top: 8px; cursor: pointer; color: blue;"
+    >
+        cannoni1@udayton.edu
+    </div>
+    <script src="email.js"></script>
+    <hr>
+
+    <!-- Analog clock from a remote JS file -->
+    <canvas id="analog-clock" width="200" height="200"></canvas>
+    <script src="https://waph-phung.github.io/clock.js"></script>
+
+    <script>
+        // Wait until the page (and clock.js) is loaded
+        window.addEventListener('load', function() {
+            const canvas = document.getElementById('analog-clock');
+            if (!canvas.getContext) return;          // No canvas support?
+            const ctx = canvas.getContext('2d');
+            const radius = canvas.height / 2;
+
+            // Move the (0,0) origin to the center of the canvas
+            ctx.translate(radius, radius);
+
+            // Draw once immediately, then every second
+            function updateClock() {
+            // these functions come from clock.js
+            drawFace(ctx, radius);
+            drawNumbers(ctx, radius);
+            drawTime(ctx, radius);
+            }
+            updateClock();
+            setInterval(updateClock, 1000);
+        });
+        </script>
+    <div style="margin: 20px 0;">
+        <label for="jquery-input">Enter text:</label>
+        <input type="text" id="jquery-input" style="padding:4px; width:200px;" placeholder="Text for jQuery Ajax">
+        
+        <button type="button" onclick="jQueryAjaxGet()" class="button round">jQuery Ajax GET</button>
+        <button type="button" onclick="jQueryAjaxPost()" class="button round">jQuery Ajax POST</button>
+
+        <div id="jquery-response" style="margin-top:10px; padding:6px; border:1px solid #ccc;"></div>
+    </div>
+    <div style="margin: 20px 0;">
+    <!-- 1) User Input + Button (no form wrapper) -->
+    <label for="ajax-input">Type something:</label>
+    <input
+        type="text"
+        id="ajax-input"
+        placeholder="Enter text here"
+        style="padding:4px; width:200px;"
+    />
+    <!-- Note type="button" here: prevents implicit form‐submit behavior -->
+    <button id="ajax-button" type="button" style="padding:6px 12px; margin-left:8px;">
+        Send Ajax GET
+    </button>
+
+    <!-- 2) Where the server’s response will go -->
+    <div id="ajax-result">
+        <!-- echo.php’s output will appear here -->
+    </div>
+
+    <script>
+        document.getElementById('ajax-button').addEventListener('click', function(e) {
+        // 1) Prevent any default navigation/submit
+        e.preventDefault();
+
+        // 2) Grab the user’s text
+        const userText = document.getElementById('ajax-input').value;
+
+        // 3) Build the GET URL (encodeURIComponent to escape special chars)
+        const url = 'echo.php?message=' + encodeURIComponent(userText);
+
+        // 4) Send the Ajax request
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // Encode response as text, not raw HTML
+                document.getElementById('ajax-result').textContent = xhr.responseText;
+            } else {
+                document.getElementById('ajax-result').textContent =
+                'Error: HTTP ' + xhr.status;
+            }
+        };
+
+
+        xhr.onerror = function() {
+            document.getElementById('ajax-result').textContent =
+            'Network error – could not reach echo.php.';
+        };
+
+        xhr.send();
+        });
+    </script>
+    <script>
+    function jQueryAjaxGet() {
+        const input = $("#jquery-input").val().trim();
+        if (input.length === 0 || input.length > 100) {
+            alert("Invalid input. Please enter 1–100 characters.");
+            return;
+        }       
+
+
+        $.get("echo.php?message=" + encodeURIComponent(input), function(response) {
+        $("#jquery-response").text("GET response: " + response); // Instead of: .html()
+        }).fail(function() {
+        $("#jquery-response").text("GET request failed.");
+        });
+
+        $("#jquery-input").val(""); // Clear input
+    }
+
+    function jQueryAjaxPost() {
+        const input = $("#jquery-input").val().trim();
+        if (input.length === 0 || input.length > 100) {
+            alert("Invalid input. Please enter 1–100 characters.");
+            return;
+        }
+
+
+        $.post("echo.php", { message: input }, function(response) {
+        $("#jquery-response").text("POST response: " + response); // Instead of: .html()
+        }).fail(function() {
+        $("#jquery-response").text("POST request failed.");
+        });
+
+        $("#jquery-input").val(""); // Clear input
+        
+    }
+    </script>
+
+
+    <div id="joke-section" style="margin: 30px; padding: 16px; border: 2px dashed #aaa; border-radius: 12px; background: #f9f9f9;">
+    <h2 style="font-family: 'Comic Sans MS', cursive, sans-serif; color: #2c3e50;">
+        Minutely Developer Chuckle
+    </h2>
+    <p><small>All jokes are fetched from a public/third-party service (xkcd.com). I am not responsible for its content.</small></p>
+    <div id="joke-container" style="margin-top: 12px; font-family: monospace; font-size: 1.1em; color: #333;">
+        Loading a programming joke...
+    </div>
+    </div>
+
+    <script>
+    // 1) function to fetch & display one joke
+    function loadJoke() {
+        fetch("https://v2.jokeapi.dev/joke/Any?type=single")
+        .then(res => res.json())
+        .then(response => {
+            const slot = document.getElementById("joke-container");
+            if (!response.error && response.joke) {
+            slot.innerHTML = "💻 " + response.joke;
+            } else {
+            slot.textContent = "Oops! Couldn't fetch a joke.";
+            }
+        })
+        .catch(() => {
+            document.getElementById("joke-container")
+            .textContent = "Network error – failed to fetch a joke.";
+        });
+    }
+
+    // 2) On DOM ready, run immediately, then every 60 000 ms
+    document.addEventListener("DOMContentLoaded", () => {
+        loadJoke();
+        setInterval(loadJoke, 60000);
+    });
+    </script>
+
+
+    <div id="agify-section" style="margin: 30px; padding: 16px; border: 1px solid #ccc; border-radius: 8px;">
+    <h2> Predict Your Age</h2>
+    <label for="name-input">Enter your first name:</label>
+    <input type="text" id="name-input" placeholder="e.g., Alice" style="margin: 8px 0; padding: 6px;" />
+    <button onclick="predictAge()" style="padding: 6px 12px;">Predict Age</button>
+
+    <div id="agify-result" style="margin-top: 12px; font-family: monospace;"></div>
+    </div>
+    <script>
+    function predictAge() {
+        const name = document.getElementById('name-input').value.trim();
+        const resultDiv = document.getElementById('agify-result');
+
+        if (name === "") {
+        resultDiv.textContent = "Please enter a name.";
+        return;
+        }
+
+        const url = `https://api.agify.io/?name=${encodeURIComponent(name)}`;
+
+        fetch(url)
+        .then(response => {
+            if (!response.ok) throw new Error("Network response was not ok");
+            return response.json();
+        })
+        .then(data => {
+            resultDiv.innerHTML = `👤 Name: <strong>${data.name}</strong><br>🎂 Predicted Age: <strong>${data.age}</strong><br>📊 Sample Size: <strong>${data.count}</strong>`;
+        })
+        .catch(error => {
+            resultDiv.textContent = "Failed to fetch data: " + error.message;
+        });
+    }
+    </script>
+
+    <!-- XKCD Comic Section -->
+    <section id="xkcd-comic" style="margin:30px; padding:16px; border:2px solid #ccc; border-radius:8px; background:#f0f0f0;">
+    <h2 style="font-family:'Comic Sans MS',cursive; color:#34495e;">Random XKCD Comic</h2>
+    <img id="xkcd-img" src="" alt="Loading XKCD..." style="max-width:100%; height:auto; display:block; margin:12px auto;">
+    <p id="xkcd-title" style="text-align:center; font-style:italic;"></p>
+    <p><small>All comics are fetched from a public/third-party service (xkcd.com). I am not responsible for its content.</small></p>
+    </section>
+
+    <script>
+    async function loadXkcd() {
+        try {
+        const res = await fetch('https://xkcd.now.sh/?comic=latest');
+        const data = await res.json();
+        // Insert the image & title
+        const img = document.getElementById('xkcd-img');
+        img.src = data.img;
+        img.alt = data.alt || 'xkcd comic';
+        document.getElementById('xkcd-title').textContent = data.title;
+        } catch (err) {
+        document.getElementById('xkcd-title').textContent = "Could not load the comic.";
+        }
+    }
+
+    // Load one comic on page-load
+    document.addEventListener('DOMContentLoaded', loadXkcd);
+    </script>
+
+
+</body>
+</html>
