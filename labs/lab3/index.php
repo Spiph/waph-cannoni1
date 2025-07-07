@@ -36,14 +36,14 @@ function checklogin_mysql($username, $pass) {
     return FALSE;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Note: The username from POST is not sanitized, which is part of the vulnerability.
-    if (checklogin_mysql($_POST['username'], $_POST['password'])) {
-        // The output here is also unsanitized, making it vulnerable to XSS.
-        echo "Welcome " . $_POST['username'] . "!";
-    } else {
-        echo "Invalid username/password";
-    }
-} else {
-    include 'form.php';
-}
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//     // Note: The username from POST is not sanitized, which is part of the vulnerability.
+//     if (checklogin_mysql($_POST['username'], $_POST['password'])) {
+//         // The output here is also unsanitized, making it vulnerable to XSS.
+//         echo "Welcome " . $_POST['username'] . "!";
+//     } else {
+//         echo "Invalid username/password";
+//     }
+// } else {
+//     include 'form.php';
+// }
