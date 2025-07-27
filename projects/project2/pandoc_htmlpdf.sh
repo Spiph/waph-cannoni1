@@ -1,1 +1,1 @@
-pandoc README.md -o cannoni1-waph-hackathon3.pdf --pdf-engine=wkhtmltopdf
+pandoc README.md -o cannoni1-waph-project2.pdf --pdf-engine=wkhtmltopdf
