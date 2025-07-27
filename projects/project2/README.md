@@ -119,8 +119,10 @@ Requirement: Passwords must be hashed before being stored in the database.
 Implementation:
 The application uses PHP's modern and secure password_hash() function to create a strong, salted hash of a user's password during registration. When a user logs in, the password_verify() function is used to compare their submitted password against the stored hash. This is a significant security improvement over older methods like MD5.
 
+### Video Demo
 
-# My Code
+
+### My Code
 
 [changepasswordform](changepasswordform.php) 
 
